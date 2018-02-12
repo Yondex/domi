@@ -38,8 +38,15 @@ post '/new' do
 		@error = "typing text"
 		return erb :new
 	end
-	  @db.execute("INSERT INTO post ( create_date, content) VALUES ( datetime(), ? )", [text])
+	  @db.execute('INSERT INTO post ( create_date, content) VALUES ( datetime(), ? )', [text])
 
- redirect to '/'		
+ redirect to '/'
  erb "You typing #{text}"
+end
+
+get '/details/:post_id' do
+	post_id = (params[:post_id]).to_i
+	results = @db.execute('select * from post where id = ?', [post_id])
+	@row = results[0]
+	erb :details
 end
