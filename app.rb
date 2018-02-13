@@ -50,3 +50,11 @@ get '/details/:post_id' do
 	@row = results[0]
 	erb :details
 end
+
+
+
+post '/details/:post_id' do
+	post_id = (params[:post_id]).to_i
+	text = params[:content]
+	erb "You id #{post_id} and you content #{text} "
+end
